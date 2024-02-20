@@ -15,8 +15,8 @@
         }
 
         .container {
-            max-width: 1200px;
-            margin: 40px auto;
+            max-width: 400px;
+            margin: 20px auto;
             padding: 40px;
             background-color: #ffffff;
             border-radius: 20px;
@@ -35,6 +35,10 @@
             color: darkblue
         }
 
+        h4 {
+            text-align: left;
+        }
+
         p {
             margin-bottom: 30px;
         }
@@ -46,4 +50,8 @@
 
         ul {
             margin-left: 40px;
+        }
+
+        figure {
+            size: 20px;
         }
