@@ -124,3 +124,13 @@ imprimirDatos() {
 var diametro = parseFloat(prompt("Ingresa el diámetro del círculo:"));
 var miCirculo = new Circulo(diametro);
 miCirculo.imprimirDatos();
+
+document.write("<br></br><li><strong>Preguntas:</strong> <br></br></li>")
+document.write("¿Qué diferencias y semejanzas hay entre Java y JavaScript?<br></br>")
+document.write("Los dos son lenguajes de programación con diferencias significativas: Java fue desarrollado por Sun Microsystems, es un programa estático, tiene una sintaxis formal. JavScript fue creado por Netscape, es un programa dinámico, sirve en navegadores, tiene una sintaxis ligera y se enfoca en interactividad web. Diferencias: Propósito, tipado, plataforma, sintaxis. Similitudes: Orientación a objetos, comunidad activa.<br></br>")
+document.write("¿Qué métodos tiene el objeto Date? (Menciona al menos 5*)<br></br>")
+document.write("¿Qué métodos tienen los arreglos? (Menciona al menos 5*)<br></br>")
+document.write("¿Cómo se declara una variable con alcance local dentro de una función?<br></br>")
+document.write("¿Qué implicaciones tiene utilizar variables globales dentro de funciones?<br></br>")
+
+
