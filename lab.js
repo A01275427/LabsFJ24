@@ -19,8 +19,8 @@ console.log(cantidad)
 
 
 
-
-document.write("<li> <strong>Ejercicio 1</strong> <br></br></li>")
+//Ejercicio 1
+document.write("<br></br><li> <strong>Ejercicio 1</strong> <br></br></li>")
 var numero = prompt("Ingrese un número:"); 
 document.write("<table border='1'><tr><th>Número</th><th>Cuadrado</th><th>Cubo</th></tr>");
 for (var i = 1; i <= numero; i++) {
@@ -28,8 +28,8 @@ for (var i = 1; i <= numero; i++) {
 }
 document.write("</table>");
 
-
-document.write("<li> <strong>Ejercicio 2</strong> <br></br></li>");
+//Ejercicio 2
+document.write("<br></br><li> <strong>Ejercicio 2</strong> <br></br></li>");
 var num1 = Math.floor(Math.random() * 10);
 var num2 = Math.floor(Math.random() * 10);
 var inicio = new Date().getTime();
@@ -43,7 +43,8 @@ if (parseInt(respuestaUsuario) === num1 + num2) {
     document.write("Incorrecto. Error : " + (num1 + num2) + ". Tomaste " + tiempo + " segundos.");
 }
 
-document.write("<li> Ejercicio 3 <br></br></li>");
+//Ejercicio 3
+document.write("<br></br><li> <strong>Ejercicio 3</strong> <br></br></li>");
 const array = [1, 6, 7, 4, 9, 6, 8, 7, 11, 0, -19, 5, 45, -66];
 
 array.sort((a, b) => a - b);
@@ -78,10 +79,48 @@ document.write("<br></br> Números negativos: " + resultado.cantidadNegativos);
 document.write("<br></br> Cantidad de ceros: " + resultado.cantidadCeros);
 document.write("<br></br> Números mayores a cero: " + resultado.cantidadNumeroPos);
 
-document.write("<li> Ejercicio 4 <br></br></li>");
+//Ejercicio 4
+document.write("<br></br><li> <strong>Ejercicio 4</strong> <br></br></li>");
+
+function promedios(arr) {
+    return arr.map(a => a.reduce((sum, val) => sum + val, 0) / a.length);
+}
+var arregloDeArreglos = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
+var promediosResultados = promedios(arregloDeArreglos);
+document.write("Promedios de cada arreglo: " + promediosResultados.join(', '));
 
 
-document.write("<li> Ejercicio 5 <br></br></li>");
+//Ejercicio 5
+document.write("<br></br><li> <strong>Ejercicio 5</strong> <br></br></li>");
 
+function inverso(num) {
+    return Math.sign(num) * parseFloat(num.toString().split('').reverse().join(''));
+}
 
-document.write("<li> Ejercicio 6 <br></br></li>")
+var num1 = 12345
+var num2 = -98765
+
+document.write("Inverso de " + num1 + ": " + inverso(num1) + "<br>");
+document.write("Inverso de " + num2 + ": " + inverso(num2) + "<br>");
+
+//Ejercicio 6
+document.write("<br></br><li><strong> Ejercicio 6</strong> <br></br></li>")
+
+class Circulo {
+    constructor(diametro) {
+    this.diametro = diametro;
+    this.radio = diametro / 2;
+    this.area = Math.PI * Math.pow(this.radio, 2);
+}
+
+imprimirDatos() {
+    document.write("Datos del círculo:<br></br>");
+    document.write("Diámetro: " + this.diametro + "<br></br>");
+    document.write("Radio: " + this.radio+ "<br></br>");
+    document.write("Área: " + this.area+ "<br></br>");
+}
+}
+
+var diametro = parseFloat(prompt("Ingresa el diámetro del círculo:"));
+var miCirculo = new Circulo(diametro);
+miCirculo.imprimirDatos();
