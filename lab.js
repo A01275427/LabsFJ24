@@ -1,4 +1,4 @@
-alert("Esta fácil el Laboratorio 4 LALOOOO")
+//alert("Esta fácil el Laboratorio 4 LALOOOO")
 
 console.assert()
 
