@@ -13,10 +13,19 @@ for (let item of arreglo){
 console.log("En que momento se escribe esto")
 
 const server = http.createServer ((request, respond) => {
+    if (request.url == "/"){
+
+    }else if (request.url == "/login"){
+
+    }else{
+
+    }
+    
     console.log(request.url);
     Response.setHeader('Content-Type', 'text/html');
-    Response.write("Hola mundo desde node");
+    Response.write('');
     Response.end();
 })
+
 
 server.listen(3000);
