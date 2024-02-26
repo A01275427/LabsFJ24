@@ -126,5 +126,18 @@ var miCirculo = new Circulo(diametro);
 miCirculo.imprimirDatos();
 
 
+function calcularTotal() {
+    const precioProducto1 = 100;
+    const precioProducto2 = 200;
+    const precioProducto3 = 300;
+    const cantidadProducto1 = parseInt(document.getElementById('cantidadProducto1').value);
+    const cantidadProducto2 = parseInt(document.getElementById('cantidadProducto2').value);
+    const cantidadProducto3 = parseInt(document.getElementById('cantidadProducto3').value);
 
+    const total = (precioProducto1 * cantidadProducto1) + (precioProducto2 * cantidadProducto2) + (precioProducto3 * cantidadProducto3);
+    const iva = total * 0.16; // Suponiendo un IVA del 16%
+
+    document.getElementById('total').innerText = `Total: $${total}`;
+    document.getElementById('iva').innerText = `IVA: $${iva}`;
+}
 
