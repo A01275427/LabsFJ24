@@ -1,31 +1,30 @@
-const filesystem = require('fs');
 
-filesystem.writeFileSync('hola.txt', 'Hola desde node');
+const express = require('express');
+const app = express();
+const fs = require('fs');
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
-const arreglo = [5000, 60, 90, 100, 10, 20 , 10000, 0, 120, 2000, 240, 1000]
+// Routes definition
+app.get('/', (req, res) => {
+    res.send('Welcome! This is the homepage.');
+});
 
-for (let item of arreglo){
-    setTimeout(() => {
-        console.log(item);
-    }, item);
-}
+app.get('/submit', (req, res) => {
+    res.send('<form method="post" action="/submit-data"><input type="text" name="data"/><input type="submit" value="Submit"/></form>');
+});
 
-console.log("En que momento se escribe esto")
+app.post('/submit-data', (req, res) => {
+    const { data } = req.body;
+    fs.appendFile('submissions.txt', `${data}
+`, (err) => {
+        if (err) throw err;
+        res.send('Data received and saved.');
+    });
+});
 
-const server = http.createServer ((request, respond) => {
-    if (request.url == "/"){
+app.use((req, res, next) => {
+    res.status(404).send('Sorry, that route does not exist.');
+});
 
-    }else if (request.url == "/login"){
-
-    }else{
-
-    }
-    
-    console.log(request.url);
-    Response.setHeader('Content-Type', 'text/html');
-    Response.write('');
-    Response.end();
-})
-
-
-server.listen(3000);
+app.listen(3000, () => console.log('Server running on port 3000'));
