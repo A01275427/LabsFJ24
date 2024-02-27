@@ -150,10 +150,10 @@ document.addEventListener('DOMContentLoaded', function() {
     toggleButton.addEventListener('click', function() {
         if (content.style.display === 'none') {
             content.style.display = 'block';
-            toggleButton.textContent = 'Ocultar LAB';
+            toggleButton.textContent = 'Ocultar LAB 1';
         } else {
             content.style.display = 'none';
-            toggleButton.textContent = 'Mostrar LAB';
+            toggleButton.textContent = 'Mostrar LAB 1';
         }
     });
 });
