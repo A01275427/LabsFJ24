@@ -72,89 +72,93 @@
         <input type="number" id="cantidadProducto3" min="1" max="10" value="1">
     </div>
 
-    <div class="container">
-        <h2>Cosas sobre mi persona:</h2>
-        <p>Disfruto aprendiendo cosas nuevas y actualmente colaboro con mi papá en un proyecto de levantamiento topográfico de terrenos para construcción. También estoy desarrollando un sistema de gestión de obras para la empresa familiar y otros proyectos relacionados con obras públicas. Me apasiona practicar deportes, leer y viajar. Un dato curioso es que tengo 14 perros.</p>
-        <h2>Preguntas:</h2>
-        <ol>
-            <li>
-                <h3><strong> ¿Cuál es la diferencia entre Internet y la World Wide Web?</strong></h3>
-                <p>Internet es una red mundial de computadoras conectadas entre sí, mientras que la World Wide Web es una colección de páginas alojadas en esta red.</p>
-            </li>
-            <li>
-                <h3><strong> ¿Cuáles son las partes de un URL?</strong></h3>
-                <p>Las partes de un URL son: Protocolo de comunicación, Dominio, Directorio (opcional), Nombre del archivo y variables opcionales utilizando "&".</p>
-            </li>
-            <li>
-                <h3><strong> ¿Cuál es el propósito de los métodos HTTP: GET, HEAD, POST, PUT, PATCH, DELETE?</strong></h3>
-                <p>
-                    <ul>
-                        <li><strong>HTTP Get:</strong> Realiza peticiones a un recurso específico a través de la URL sin enviar datos en el cuerpo de la solicitud.</li>
-                        <li><strong>HTTP Head:</strong> Similar al Get pero sin contenido en la respuesta; se utiliza para obtener el código de respuesta y el encabezado (header).</li>
-                        <li><strong>HTTP Post:</strong> Envía datos a través del cuerpo de la solicitud sin utilizar el URL, ideal para datos sensibles como usuario y contraseña.</li>
-                        <li><strong>HTTP Put:</strong> Similar al método Post, puede ser ejecutado múltiples veces teniendo el mismo efecto (agregar un recurso).</li>
-                        <li><strong>HTTP Patch:</strong> Se utiliza para hacer modificaciones parciales en un recurso específico.</li>
-                        <li><strong>HTTP Delete:</strong> Elimina un recurso específico y puede ser utilizado múltiples veces teniendo el mismo efecto.</li>
-                    </ul>
-                </p>
-            </li>
-            <li>
-                <h3><strong> ¿Qué método HTTP se debe utilizar al enviar un formulario HTML, por ejemplo cuando ingresas tu usuario y contraseña en algún sitio? ¿Por qué?</strong></h3>
-                <p>El método ideal sería el Post, ya que permite enviar los datos en el cuerpo de la solicitud en lugar de a través del URL.</p>
-            </li>
-            <li>
-                <h3><strong> ¿Qué método HTTP se utiliza cuando a través de un navegador web se accede a una página a través de un URL?</strong></h3>
-                <p>Se utiliza el método Get.</p>
-            </li>
-            <li>
-                <h3><strong> Un servidor web devuelve una respuesta HTTP con código 200. ¿Qué significa esto? ¿Ocurrió algún error?</strong></h3>
-                <p>No es un error; significa que la solicitud fue exitosa.</p>
-            </li>
-            <li>
-                <h3><strong> ¿Es responsabilidad del desarrollador corregir un sitio web si un usuario reporta que intentó acceder al sitio y se encontró con un error 404? ¿Por qué?</strong></h3>
-                <p>En mi opinión, sí es responsabilidad del desarrollador corregir el error 404, ya que indica que no se encuentra el recurso solicitado. Corregirlo mejora la experiencia del usuario y evita posibles penalizaciones.</p>
-            </li>
-            <li>
-                <h3><strong> ¿Es responsabilidad del desarrollador corregir un sitio web si un usuario reporta que intentó acceder al sitio y se encontró con un error 500? ¿Por qué?</strong></h3>
-                <p>Sí, es responsabilidad del desarrollador corregir el error 500 (error interno del servidor) para garantizar la funcionalidad y accesibilidad del sitio, mejorando así la experiencia del usuario.</p>
-            </li>
-            <li>
-                <h3><strong> ¿Qué significa que un atributo HTML5 esté depreciado o desaprobado (deprecated)? Menciona algunos elementos de HTML 4 que en HTML5 estén desaprobados.</strong></h3>
-                <p>Un atributo HTML5 desaprobado significa que se considera obsoleto. Algunos elementos de HTML 4 desaprobados en HTML5 son "font", "center", "strike", "applet", "basefont", "frameset" y "frame".</p>
-            </li>
-            <li>
-                <h3><strong> ¿Cuáles son las diferencias principales entre HTML 4 y HTML5?</strong></h3>
-                <p>Las principales diferencias incluyen nuevos elementos semánticos, desaprobación de elementos, nuevos atributos, soporte multimedia y funciones avanzadas de navegador, ofreciendo mejores posibilidades para crear sitios web.</p>
-            </li>
-            <li>
-                <h3><strong> ¿Qué componentes de estructura y estilo tiene una tabla?</strong></h3>
-                <p>La tabla tiene varios componentes, incluyendo "caption" para un título, "colgroup" para agregar columnas, "col" para aplicar atributos a una o varias columnas, "tbody" para el cuerpo de la tabla, "thead" para el encabezado, "tfoot" para el pie, "tr" para una fila, "td" para una celda regular y "th" para la celda de encabezado.</p>
-            </li>
-            <li>
-                <h3><strong> ¿Cuáles son los principales controles de un formulario HTML5?</strong></h3>
-                <p>Existen muchos controles, algunos de ellos son el formulario en sí, los atributos type, name, value, required, placeholder, size, maxlength, minlength, autofocus, input, buttons, type=text, type=password, type=number, type=date, type=time, type=checkbox, type=radio, type=color, type=range y type=hidden, entre otros.</p>
-            </li>
-            <li>
-                <h3><strong> ¿Qué tanto soporte HTML5 tiene el navegador que utilizas?</strong></h3>
-                <p>Utilizo Chrome, que tiene un soporte de 476 puntos según la última verificación realizada hace aproximadamente 4 meses.</p>
-            </li>
-            <li>
-                <h3><strong> Sobre el ciclo de vida y desarrollo de los sistemas de información:</strong></h3>
-                <h3><strong>¿Cuál es el ciclo de vida de los sistemas de información?</strong></h3>
-                <p>El ciclo de vida de los sistemas de información abarca las etapas de Planeación, Análisis, Diseño, Implementación, Pruebas, Instalación, Mantenimiento, Delimitación del ámbito del proyecto, Estudio de viabilidad, Análisis de riesgos y Ciclo de vida clásico.</p>
-            </li>
-            <li>
-                <h3><strong> ¿Cuál es el ciclo de desarrollo de sistemas de información?</strong></h3>
-                <p>El ciclo de desarrollo de sistemas de información comprende las fases de Planeación, Análisis, Diseño, Implementación, Pruebas, Instalación, Mantenimiento, Delimitación del ámbito del proyecto, Estudio de viabilidad, Análisis de riesgos y Ciclo de vida clásico.</p>
-            </li>
-        </ol>
-            </div>
-        </div>
-    </div>
-    </div>
+    <button id="toggleContentBtn">Lab1</button>
+    <div id="content" style="display: none;">
+        <div class="container">
+            <h2>Cosas sobre mi persona:</h2>
+            <p>Disfruto aprendiendo cosas nuevas y actualmente colaboro con mi papá en un proyecto de levantamiento topográfico de terrenos para construcción. También estoy desarrollando un sistema de gestión de obras para la empresa familiar y otros proyectos relacionados con obras públicas. Me apasiona practicar deportes, leer y viajar. Un dato curioso es que tengo 14 perros.</p>
+            <h2>Preguntas:</h2>
+            <ol>
+                <li>
+                    <h3><strong> ¿Cuál es la diferencia entre Internet y la World Wide Web?</strong></h3>
+                    <p>Internet es una red mundial de computadoras conectadas entre sí, mientras que la World Wide Web es una colección de páginas alojadas en esta red.</p>
+                </li>
+                <li>
+                    <h3><strong> ¿Cuáles son las partes de un URL?</strong></h3>
+                    <p>Las partes de un URL son: Protocolo de comunicación, Dominio, Directorio (opcional), Nombre del archivo y variables opcionales utilizando "&".</p>
+                </li>
+                <li>
+                    <h3><strong> ¿Cuál es el propósito de los métodos HTTP: GET, HEAD, POST, PUT, PATCH, DELETE?</strong></h3>
+                    <p>
+                        <ul>
+                            <li><strong>HTTP Get:</strong> Realiza peticiones a un recurso específico a través de la URL sin enviar datos en el cuerpo de la solicitud.</li>
+                            <li><strong>HTTP Head:</strong> Similar al Get pero sin contenido en la respuesta; se utiliza para obtener el código de respuesta y el encabezado (header).</li>
+                            <li><strong>HTTP Post:</strong> Envía datos a través del cuerpo de la solicitud sin utilizar el URL, ideal para datos sensibles como usuario y contraseña.</li>
+                            <li><strong>HTTP Put:</strong> Similar al método Post, puede ser ejecutado múltiples veces teniendo el mismo efecto (agregar un recurso).</li>
+                            <li><strong>HTTP Patch:</strong> Se utiliza para hacer modificaciones parciales en un recurso específico.</li>
+                            <li><strong>HTTP Delete:</strong> Elimina un recurso específico y puede ser utilizado múltiples veces teniendo el mismo efecto.</li>
+                        </ul>
+                    </p>
+                </li>
+                <li>
+                    <h3><strong> ¿Qué método HTTP se debe utilizar al enviar un formulario HTML, por ejemplo cuando ingresas tu usuario y contraseña en algún sitio? ¿Por qué?</strong></h3>
+                    <p>El método ideal sería el Post, ya que permite enviar los datos en el cuerpo de la solicitud en lugar de a través del URL.</p>
+                </li>
+                <li>
+                    <h3><strong> ¿Qué método HTTP se utiliza cuando a través de un navegador web se accede a una página a través de un URL?</strong></h3>
+                    <p>Se utiliza el método Get.</p>
+                </li>
+                <li>
+                    <h3><strong> Un servidor web devuelve una respuesta HTTP con código 200. ¿Qué significa esto? ¿Ocurrió algún error?</strong></h3>
+                    <p>No es un error; significa que la solicitud fue exitosa.</p>
+                </li>
+                <li>
+                    <h3><strong> ¿Es responsabilidad del desarrollador corregir un sitio web si un usuario reporta que intentó acceder al sitio y se encontró con un error 404? ¿Por qué?</strong></h3>
+                    <p>En mi opinión, sí es responsabilidad del desarrollador corregir el error 404, ya que indica que no se encuentra el recurso solicitado. Corregirlo mejora la experiencia del usuario y evita posibles penalizaciones.</p>
+                </li>
+                <li>
+                    <h3><strong> ¿Es responsabilidad del desarrollador corregir un sitio web si un usuario reporta que intentó acceder al sitio y se encontró con un error 500? ¿Por qué?</strong></h3>
+                    <p>Sí, es responsabilidad del desarrollador corregir el error 500 (error interno del servidor) para garantizar la funcionalidad y accesibilidad del sitio, mejorando así la experiencia del usuario.</p>
+                </li>
+                <li>
+                    <h3><strong> ¿Qué significa que un atributo HTML5 esté depreciado o desaprobado (deprecated)? Menciona algunos elementos de HTML 4 que en HTML5 estén desaprobados.</strong></h3>
+                    <p>Un atributo HTML5 desaprobado significa que se considera obsoleto. Algunos elementos de HTML 4 desaprobados en HTML5 son "font", "center", "strike", "applet", "basefont", "frameset" y "frame".</p>
+                </li>
+                <li>
+                    <h3><strong> ¿Cuáles son las diferencias principales entre HTML 4 y HTML5?</strong></h3>
+                    <p>Las principales diferencias incluyen nuevos elementos semánticos, desaprobación de elementos, nuevos atributos, soporte multimedia y funciones avanzadas de navegador, ofreciendo mejores posibilidades para crear sitios web.</p>
+                </li>
+                <li>
+                    <h3><strong> ¿Qué componentes de estructura y estilo tiene una tabla?</strong></h3>
+                    <p>La tabla tiene varios componentes, incluyendo "caption" para un título, "colgroup" para agregar columnas, "col" para aplicar atributos a una o varias columnas, "tbody" para el cuerpo de la tabla, "thead" para el encabezado, "tfoot" para el pie, "tr" para una fila, "td" para una celda regular y "th" para la celda de encabezado.</p>
+                </li>
+                <li>
+                    <h3><strong> ¿Cuáles son los principales controles de un formulario HTML5?</strong></h3>
+                    <p>Existen muchos controles, algunos de ellos son el formulario en sí, los atributos type, name, value, required, placeholder, size, maxlength, minlength, autofocus, input, buttons, type=text, type=password, type=number, type=date, type=time, type=checkbox, type=radio, type=color, type=range y type=hidden, entre otros.</p>
+                </li>
+                <li>
+                    <h3><strong> ¿Qué tanto soporte HTML5 tiene el navegador que utilizas?</strong></h3>
+                    <p>Utilizo Chrome, que tiene un soporte de 476 puntos según la última verificación realizada hace aproximadamente 4 meses.</p>
+                </li>
+                <li>
+                    <h3><strong> Sobre el ciclo de vida y desarrollo de los sistemas de información:</strong></h3>
+                    <h3><strong>¿Cuál es el ciclo de vida de los sistemas de información?</strong></h3>
+                    <p>El ciclo de vida de los sistemas de información abarca las etapas de Planeación, Análisis, Diseño, Implementación, Pruebas, Instalación, Mantenimiento, Delimitación del ámbito del proyecto, Estudio de viabilidad, Análisis de riesgos y Ciclo de vida clásico.</p>
+                </li>
+                <li>
+                    <h3><strong> ¿Cuál es el ciclo de desarrollo de sistemas de información?</strong></h3>
+                    <p>El ciclo de desarrollo de sistemas de información comprende las fases de Planeación, Análisis, Diseño, Implementación, Pruebas, Instalación, Mantenimiento, Delimitación del ámbito del proyecto, Estudio de viabilidad, Análisis de riesgos y Ciclo de vida clásico.</p>
+                </li>
+            </ol>
                 
-    
+        </div>        
+    </div>        
+</div>        
+</div>    
+</div>
 
+<button id="toggleContentBtn">Mostrar/Ocultar Contenido</button>
+<div id="content" style="display: none;">
     <div class="container">
         <h2>Preguntas Laboratorio 3:</h2>
         <ol>
@@ -177,13 +181,10 @@
         </ol>
         </div></p>
         </div>
-    </div>
+    </div></div>
 
-    <div class="container">
-        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#content1" aria-expanded="false" aria-controls="content1">
-            Lab 1
-        </button>
-
+    <button id="toggleContentBtn">Mostrar/Ocultar Contenido</button>
+    <div id="content" style="display: none;">
         <div class="container">
             <h2><strong> Laboratorio 4</strong></h2>
         <ol>
@@ -212,13 +213,18 @@
             </li>
         </ol>
         </div>
-        
-        <div class="container">
-            <h2> Laboratorio 5:</h2>
-            <script src="lab.js"></script>
-        </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-c8QTRoWepIq3BdxlV7K3kNZ7t+v4p6iUySLdje1kpJFvZovJ2lBQ3T2FdT1nt1Hf" crossorigin="anonymous"></script>
-    </body>
+    </div>
+    
+    <button id="toggleContentBtn">Mostrar/Ocultar Contenido</button>
+<div id="content" style="display: none;">
+    <div class="container">
+        <h2> Laboratorio 5:</h2>
+        <script src="lab.js"></script>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-c8QTRoWepIq3BdxlV7K3kNZ7t+v4p6iUySLdje1kpJFvZovJ2lBQ3T2FdT1nt1Hf" crossorigin="anonymous"></script>
+</div>
+
+</body>
 </footer>
 </html>
 
