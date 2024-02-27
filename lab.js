@@ -18,9 +18,9 @@ let cantidad = 1;
 console.log(cantidad)
 
 
-
+/*
 //Ejercicio 1
-document.write("<br></br><li> <strong>Ejercicio 1</strong> <br></br></li>")
+//document.write("<br></br><li> <strong>Ejercicio 1</strong> <br></br></li>")
 var numero = prompt("Ingrese un número:"); 
 document.write("<table border='1'><tr><th>Número</th><th>Cuadrado</th><th>Cubo</th></tr>");
 for (var i = 1; i <= numero; i++) {
@@ -140,4 +140,37 @@ function calcularTotal() {
     document.getElementById('total').innerText = `Total: $${total}`;
     document.getElementById('iva').innerText = `IVA: $${iva}`;
 }
+*/
 
+
+const filesystem = require('fs');
+
+filesystem.writeFileSync('hola.txt', 'Hola desde node');
+
+const arreglo = [5000, 60, 90, 100, 10, 20 , 10000, 0, 120, 2000, 240, 1000]
+
+for (let item of arreglo){
+    setTimeout(() => {
+        console.log(item);
+    }, item);
+}
+
+console.log("En que momento se escribe esto")
+
+const server = http.createServer ((request, respond) => {
+    if (request.url == "/"){
+
+    }else if (request.url == "/login"){
+
+    }else{
+
+    }
+    
+    console.log(request.url);
+    Response.setHeader('Content-Type', 'text/html');
+    Response.write('');
+    Response.end();
+})
+
+
+server.listen(3000);
