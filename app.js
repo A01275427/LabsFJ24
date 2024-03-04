@@ -1,5 +1,7 @@
 const filesystem = require('fs');
+const http = require('http');
 
+/*
 filesystem.writeFileSync('hola.txt', 'Hola desde node');
 
 
@@ -13,9 +15,10 @@ for (let item of arreglo){
 }
 
 console.log("En que momento se escribe esto")
+*/
 
 const server = http.createServer((request, response) => {    
-    console.log(request.url);
+    if(request.url == "/")
     response.setHeader('Content-Type', 'text/html');
     response.write(`
     
@@ -241,9 +244,29 @@ const server = http.createServer((request, response) => {
 </footer>
 </html>
 
-
+}
 
     `);
     response.end();
+
+    
 });
+
+
 server.listen(3000);
+
+/*
+const datos = [];
+
+request.on('data', (dato) => {
+    console.log(dato);
+    datos.push(dato);
+});
+
+return request.on('end', () => {
+    const datos_completos = Buffer.concat(datos).toString();
+    console.log(datos_completos);
+    const nuevo_dato = datos_completos.split('=')[1];
+    return response.end();
+});
+*/
