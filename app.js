@@ -10,7 +10,6 @@ const motocicletas = [{
     imagen: "https://s3-us-west-2.amazonaws.com/my-car-mexico/modelos/8ef44752/BMW-G310-GS-1.webp"
 }];
 
-//middelware
 app.use((request, response, next) => {
     console.log('Middleware');
     next();
