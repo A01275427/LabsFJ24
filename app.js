@@ -273,8 +273,14 @@ app.get('/', (request, response, next) => {
     `;
 });
 
+app.post('/motos', (request, response, next) =>{
+    console.log(request.body);
+    motocicletas.push(request.body);
+    response.redirect('/');
+});
+
 app.get('/motos', (request, response, next) => {
-    response.send(`
+    let html_respuesta = `
     <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -373,10 +379,10 @@ app.get('/motos', (request, response, next) => {
             </div>
         </div>
     </footer>
-    `)
+    `
     console.log(request.body);
     response.redirect('/');
-})
+});
 
 app.use((request, response, next) => {
     response.status(404);
