@@ -4,12 +4,6 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public')); 
 
-let motocicletas = [
-    {
-        nombre: "BMW 310",
-        imagen: "https://s3-us-west-2.amazonaws.com/my-car-mexico/modelos/8ef44752/BMW-G310-GS-1.webp",
-    },
-];
 
 const navbarHtml = `
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -34,7 +28,7 @@ const navbarHtml = `
     </div>
 </nav>`;
 
-app.get('/', (req, res) => {
+app.get('/', (request, response, next) => {
     let html = `
 <!DOCTYPE html>
 <html lang="es">
@@ -61,7 +55,7 @@ app.get('/', (req, res) => {
     res.send(html);
 });
 
-app.get('/agregar-moto', (req, res) => {
+app.get('/agregar-moto', (request, response, next) => {
     let formHtml = `
 <!DOCTYPE html>
 <html lang="es">
@@ -92,7 +86,7 @@ app.get('/agregar-moto', (req, res) => {
     res.send(formHtml);
 });
 
-app.post('/agregar-moto', (req, res) => {
+app.post('/agregar-moto', (reques, response, next) => {
     const { nombre, imagen } = req.body;
     motocicletas.push({ nombre, imagen });
     res.redirect('/');
