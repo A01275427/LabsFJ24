@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('public')); // Para servir archivos estáticos desde la carpeta public
+app.use(express.static('public')); 
 
 let motocicletas = [
     {
@@ -11,7 +11,6 @@ let motocicletas = [
     },
 ];
 
-// Navbar HTML
 const navbarHtml = `
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
@@ -35,7 +34,6 @@ const navbarHtml = `
     </div>
 </nav>`;
 
-// Ruta de inicio
 app.get('/', (req, res) => {
     let html = `
 <!DOCTYPE html>
@@ -63,7 +61,6 @@ app.get('/', (req, res) => {
     res.send(html);
 });
 
-// Ruta para mostrar el formulario de agregar motocicleta
 app.get('/agregar-moto', (req, res) => {
     let formHtml = `
 <!DOCTYPE html>
@@ -95,14 +92,12 @@ app.get('/agregar-moto', (req, res) => {
     res.send(formHtml);
 });
 
-// Procesar el formulario y agregar una nueva motocicleta
 app.post('/agregar-moto', (req, res) => {
     const { nombre, imagen } = req.body;
     motocicletas.push({ nombre, imagen });
     res.redirect('/');
 });
 
-// Manejo de errores 404
 app.use((req, res) => {
     res.status(404).send('<h1>404 Not Found</h1><p>La página que buscas no existe. <a href="/">Volver al inicio</a></p>');
 });
