@@ -9,13 +9,13 @@
 </head>
 <body>
     <h1><%= tituloPagina %></h1>
-    <form action="/agregar-moto" method="POST">
-        <input type="text" name="nombre" placeholder="Nombre de la motocicleta" required>
-        <input type="text" name="imagen" placeholder="URL de la imagen" required>
-        <button type="submit">Agregar Motocicleta</button>
+    <form action="/editar-moto" method="POST">
+        <input type="hidden" name="id" value="<%= moto.id %>">
+        <input type="text" name="nombre" value="<%= moto.nombre %>" required>
+        <input type="text" name="imagen" value="<%= moto.imagen %>" required>
+        <button type="submit">Guardar Cambios</button>
     </form>
 </body>
 </html>
-
 
 <%- include('includes/foot') %>

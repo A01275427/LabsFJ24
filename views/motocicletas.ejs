@@ -1,13 +1,25 @@
 <%- include('includes/head', { tituloPagina: 'Lista de Motocicletas' }) %>
 
-<div class="container mt-4">
-    <h1>Lista de Motocicletas</h1>
-    <% motocicletas.forEach(motocicleta => { %>
-        <div>
-            <h3><%= motocicleta.nombre %></h3>
-            <img src="<%= motocicleta.imagen %>" alt="Imagen de <%= motocicleta.nombre %>">
-        </div>
-    <% }) %>
-</div>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title><%= tituloPagina %></title>
+    <link rel="stylesheet" href="/css/estilo.css">
+</head>
+<body>
+    <h1><%= tituloPagina %></h1>
+    <ul>
+        <% motocicletas.forEach(moto => { %>
+            <li>
+                <img src="<%= moto.imagen %>" alt="<%= moto.nombre %>" width="100">
+                <%= moto.nombre %>
+            </li>
+        <% }) %>
+    </ul>
+    <a href="/agregar-moto">Agregar una nueva motocicleta</a>
+</body>
+</html>
+
 
 <%- include('includes/foot') %>
