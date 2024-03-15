@@ -1,13 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-let motocicletas = [
-    {
-        id: 1,
-        nombre: "BMW 310 gs",
-        imagen: "https://s3-us-west-2.amazonaws.com/my-car-mexico/modelos/8ef44752/BMW-G310-GS-1.webp",
-    },
-];
+
+const motocicletasController = require('../controllers/motocicletas.controller');
 
 router.get('/motocicletas', (request, response) => {
     response.render('motocicletas', { 
@@ -16,22 +11,13 @@ router.get('/motocicletas', (request, response) => {
     });
 });
 
-router.get('/agregar-moto', (request, response) => {
-    response.render('agregarMoto', {
-        tituloPagina: 'Agregar Motocicleta'
-    });
-});
+const motociletasController = require('../controllers/motocicletas.controller')
 
-router.post('/agregar-moto', (request, response) => {
-    const { nombre, imagen } = request.body;
-    const nuevaMoto = {
-        id: motocicletas.length + 1,
-        nombre,
-        imagen
-    };
-    motocicletas.push(nuevaMoto);
-    response.redirect('/motocicletas');
-});
+router.get('/motocicletas', motociletasController.get_moto);
+
+router.post('motocicletas', motociletasController.post_motocicleta)
+router.get('/', motociletasController.get_root)
+
 
 router.get('/editar-moto/:motoId', (request, response) => {
     const motoId = request.params.motoId;
