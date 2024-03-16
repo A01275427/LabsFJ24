@@ -2,9 +2,13 @@ const express = require('express');
 const router = express.Router();
 const motocicletasController = require('../controllers/motocicletas.controller');
 
-router.get('/motocicletas', motocicletasController.get_moto);
+// Mostrar formulario para agregar una nueva motocicleta
 router.get('/agregar-moto', motocicletasController.get_agregar_moto);
+
+// Procesar el formulario para agregar una nueva motocicleta
 router.post('/agregar-moto', motocicletasController.post_agregar_moto);
-router.get('/', motocicletasController.get_root);
+
+// Ruta raíz para el listado de motocicletas
+router.get('/', motocicletasController.get_moto);
 
 module.exports = router;
