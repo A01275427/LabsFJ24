@@ -1,22 +1,32 @@
-const Motocicletas = require('../models/motocicletas.model');
+const Motocicletas = require('../models/motocicletas.model'); // Asegúrate de tener este modelo implementado
 
 exports.get_moto = (request, response, next) => {
-    response.render('motocicletas');
+    Motocicletas.fetchAll(motocicletas => {
+        response.render('motocicletas', {
+            motocicletas: motocicletas,
+            tituloPagina: 'Lista de Motocicletas'
+        });
+    });
 };
 
-exports.get_root('/agregar-moto', (request, response) => {
+exports.get_agregar_moto = (request, response, next) => {
     response.render('agregarMoto', {
         tituloPagina: 'Agregar Motocicleta'
     });
-});
+};
 
-exports.post_motocicletas('/agregar-moto', (request, response) => {
-    const { nombre, imagen } = request.body;
-    const nuevaMoto = {
-        id: motocicletas.length + 1,
-        nombre,
-        imagen
-    };
-    motocicletas.push(nuevaMoto);
-    response.redirect('/motocicletas');
-});
+exports.post_agregar_moto = (request, response, next) => {
+    const nuevaMoto = new Motocicletas(request.body.nombre, request.body.imagen);
+    nuevaMoto.save(() => {
+        response.redirect('/motocicletas');
+    });
+};
+
+exports.get_root = (request, response, next) => {
+    Motocicletas.fetchAll(motocicletas => {
+        response.render('motocicletas', {
+            motocicletas: motocicletas,
+            tituloPagina: 'Lista de Motocicletas'
+        });
+    });
+};
