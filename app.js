@@ -1,6 +1,15 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const session = require('express-session');
+
+app.use(cookieParser());
+
+app.use(session({
+    secret: 'secret-key', // Cambia 'secret-key' por una cadena secreta propia
+    resave: false,
+    saveUninitialized: false,
+}));
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));

@@ -1,20 +1,31 @@
-const usuarios = [
-    { nombre: "Usuario 1", edad: 30 },
-    { nombre: "Usuario 2", edad: 24 },
-];
+// Ejemplo en un controlador existente, por ejemplo, userController.js
 
-exports.get_usuarios = (request, response, next) => {
-    response.render('usuarios', {
-        tituloPagina: 'Lista de Usuarios',
-        usuarios: usuarios 
-    });
+exports.login = (request, response, next) => {
+    // Establecer una cookie segura
+    response.setHeader('Set-Cookie', 'loggedIn=true; HttpOnly');
+    response.redirect('/user/profile');
 };
 
-exports.post_crear_usuario = (request, response) => {
-    const nuevoUsuario = {
-        nombre: request.body.nombre,
-        edad: request.body.edad
-    };
-    usuarios.push(nuevoUsuario); 
-    response.redirect('/usuarios'); 
+exports.profile = (request, response, next) => {
+    const isLoggedIn = request.cookies['loggedIn'] === 'true'; // Leer la cookie
+    if (isLoggedIn) {
+        // Lógica para mostrar el perfil
+        response.send('Perfil del Usuario');
+    } else {
+        response.redirect('/login');
+    }
+};
+
+exports.logout = (request, response, next) => {
+    // Eliminar la sesión
+    request.session.destroy(err => {
+        if (err) {
+            // Manejar el error
+            console.log(err);
+            return next(err);
+        }
+        // Limpiar la cookie loggedIn
+        response.setHeader('Set-Cookie', 'loggedIn=; HttpOnly; Max-Age=0');
+        response.redirect('/login');
+    });
 };
