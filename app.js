@@ -3,7 +3,7 @@ const path = require('path');
 const app = express();
 
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views')); // Asegurándonos que la ruta a las vistas está correcta
+app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -12,7 +12,6 @@ const motocicletasRoutes = require('./routes/motocicletas.routes');
 const usuariosRoutes = require('./routes/usuarios.routes');
 
 app.use('/motocicletas', motocicletasRoutes);
-app.use('/agregar-moto', motocicletasRoutes);
 app.use('/usuarios', usuariosRoutes); 
 
 app.get('/', (req, res) => {

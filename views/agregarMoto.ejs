@@ -1,5 +1,4 @@
 <%- include('includes/head', { tituloPagina: 'Agregar Motocicleta' }) %>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,13 +8,13 @@
 </head>
 <body>
     <h1><%= tituloPagina %></h1>
-    <form action="/agregar-moto" method="POST">
-        <input type="text" name="nombre" placeholder="Nombre de la motocicleta" required>
-        <input type="text" name="imagen" placeholder="URL de la imagen" required>
+    <form action="/motocicletas/agregar-moto" method="POST">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+        <label for="imagen">Imagen URL:</label>
+        <input type="text" id="imagen" name="imagen" required>
         <button type="submit">Agregar Motocicleta</button>
     </form>
 </body>
 </html>
-
-
 <%- include('includes/foot') %>

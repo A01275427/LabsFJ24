@@ -1,18 +1,18 @@
-let siguienteId = 2; // Comienza en 2 porque ya tienes un objeto con id 1
+let siguienteId = 2; 
 
 module.exports = class Motocicleta {
     constructor(nombre, imagen) {
-        this.id = siguienteId++; // Asigna un nuevo ID y lo incrementa para el siguiente
+        this.id = siguienteId++; 
         this.nombre = nombre;
         this.imagen = imagen;
     }
 
     save() {
-        motocicletas.push(this); // Aquí 'this' se refiere a la instancia actual de Motocicleta
+        motocicletas.push(this); 
     }
 
     static fetchAll() {
-        return motocicletas; // Retorna todas las motocicletas
+        return motocicletas; 
     }
 };
 
@@ -22,5 +22,4 @@ const motocicletas = [
         nombre: "BMW 310 gs",
         imagen: "https://s3-us-west-2.amazonaws.com/my-car-mexico/modelos/8ef44752/BMW-G310-GS-1.webp",
     },
-    // Puedes añadir más objetos aquí si es necesario
 ];
