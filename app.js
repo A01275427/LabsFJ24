@@ -1,12 +1,13 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const cookieParser = require('cookie-parser');
 const session = require('express-session');
 
 app.use(cookieParser());
 
 app.use(session({
-    secret: 'secret-key', // Cambia 'secret-key' por una cadena secreta propia
+    secret: 'secret-key', 
     resave: false,
     saveUninitialized: false,
 }));
