@@ -22,7 +22,11 @@ const motocicletasRoutes = require('./routes/motocicletas.routes');
 const usuariosRoutes = require('./routes/usuarios.routes');
 
 app.use('/motocicletas', motocicletasRoutes);
-app.use('/usuarios', usuariosRoutes); 
+app.use('/usuarios', usuariosRoutes);
+
+app.get('/login', (req, res) => {
+    res.render('login'); 
+});
 
 app.get('/', (req, res) => {
     res.redirect('/motocicletas');
