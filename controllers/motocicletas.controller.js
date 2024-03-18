@@ -13,7 +13,6 @@ exports.post_agregar_moto = async (request, response) => {
         response.redirect('/motocicletas');
     } catch (error) {
         console.log(error);
-        // Manejar el error según tu lógica de aplicación
         response.redirect('/motocicletas/agregar-moto');
     }
 };
@@ -27,11 +26,9 @@ exports.get_moto = async (request, response) => {
         });
     } catch (error) {
         console.log(error);
-        // Manejar el error según tu lógica de aplicación
     }
 };
 
-// Controlador para obtener una motocicleta por su ID
 exports.get_moto_por_id = async (request, response) => {
     try {
         const [motocicleta, _] = await Motocicleta.findById(request.params.moto_id);
@@ -41,7 +38,6 @@ exports.get_moto_por_id = async (request, response) => {
         });
     } catch (error) {
         console.log(error);
-        // Manejar el error según tu lógica de aplicación
         response.redirect('/motocicletas');
     }
 };

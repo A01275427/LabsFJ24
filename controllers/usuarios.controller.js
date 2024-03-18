@@ -1,8 +1,6 @@
 const Usuario = require('../models/usuario.model');
 const bcrypt = require('bcryptjs');
 
-
-
 exports.get_usuarios = (request, response) => {
     response.send('Lista de usuarios');
 };
@@ -33,12 +31,6 @@ exports.post_login = (request, response) => {
                 });
         })
         .catch(err => console.log(err));
-};
-
-exports.post_login = (request, response) => {
-    const { username, password } = request.body;
-    response.cookie('loggedIn', 'true', { httpOnly: true, secure: true, maxAge: 3600000, sameSite: 'strict' });
-    response.redirect('/usuarios/profile');
 };
 
 exports.profile = (request, response) => {
@@ -80,32 +72,6 @@ exports.post_signup = (request, response) => {
         })
         .then(() => {
             response.redirect('/usuarios/login');
-        })
-        .catch(err => console.log(err));
-};
-
-exports.post_login = (request, response) => {
-    const { username, password } = request.body;
-
-    Usuario.fetchOne(username)
-        .then(([rows]) => {
-            if (rows.length === 0) {
-                // Usuario no encontrado
-                return response.redirect('/usuarios/login');
-            }
-            const user = rows[0];
-            return bcrypt.compare(password, user.password)
-                .then(doMatch => {
-                    if (doMatch) {
-                        request.session.isLoggedIn = true;
-                        request.session.user = user;
-                        return request.session.save(err => {
-                            response.redirect('/motocicletas');
-                        });
-                    }
-                    // Contraseña incorrecta
-                    response.redirect('/usuarios/login');
-                });
         })
         .catch(err => console.log(err));
 };

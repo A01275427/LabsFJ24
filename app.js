@@ -8,7 +8,7 @@ const isAuth = require('./util/is-auth.js');
 
 const router = express.Router();
 
-router.get('/rutaProtegida', isAuth, controllerQueRequiereAutenticacion);
+//router.get('/rutaProtegida', isAuth, controllerQueRequiereAutenticacion);
 
 
 app.use(session({
