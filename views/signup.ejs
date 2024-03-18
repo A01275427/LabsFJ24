@@ -1,6 +1,7 @@
 <%- include('includes/head') %>
 
-<form action="/usuarios/login" method="post">
+<h2>Registro de Usuario</h2>
+<form action="/usuarios/signup" method="post">
     <div class="form-group">
         <label for="username">Usuario:</label>
         <input type="text" id="username" name="username" required>
@@ -11,7 +12,7 @@
     </div>
     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
     
-    <button type="submit">Iniciar Sesión</button>
+    <button type="submit">Registrarse</button>
 </form>
 
 <%- include('includes/foot') %>
