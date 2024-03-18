@@ -35,3 +35,21 @@ exports.logout = (request, response) => {
         response.redirect('/usuarios/login');
     });
 };
+
+exports.get_signup = (request, response) => {
+    response.render('signup');
+};
+
+exports.post_signup = (request, response) => {
+    response.redirect('/usuarios/profile');
+};
+
+exports.post_login = (request, response) => {
+    const { username, password } = request.body;
+
+    
+
+    response.cookie('loggedIn', 'true', { httpOnly: true, secure: true, maxAge: 3600000, sameSite: 'strict' });
+
+    response.redirect('/motocicletas');
+};

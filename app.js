@@ -32,6 +32,12 @@ app.get('/', (req, res) => {
     res.redirect('/motocicletas');
 });
 
+app.use(session({
+    secret: 'tu_secreto',
+    resave: false,
+    saveUninitialized: false,
+}));
+
 app.use((req, res) => {
     res.status(404).render('includes/404', { tituloPagina: 'Página no encontrada' });
 });

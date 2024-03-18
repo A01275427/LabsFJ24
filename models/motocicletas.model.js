@@ -21,6 +21,11 @@ module.exports = class Motocicleta {
         return db.execute('SELECT * FROM motocicletas WHERE id=?', [id]);
     }
 
+    static findById(id) {
+        return db.execute('SELECT * FROM motocicletas WHERE id = ?', [id]);
+    }
+
+
     static fetch(id) {
         if (id) {
             return this.fetchOne(id);

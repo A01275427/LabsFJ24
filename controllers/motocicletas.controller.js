@@ -1,5 +1,23 @@
 const Motocicleta = require('../models/motocicletas.model');
 
+exports.get_agregar_moto = (request, response) => {
+    response.render('agregarMoto', {
+        tituloPagina: 'Agregar Motocicleta'
+    });
+};
+
+exports.post_agregar_moto = async (request, response) => {
+    const nuevaMoto = new Motocicleta(request.body.nombre, request.body.imagen, request.body.username);
+    try {
+        await nuevaMoto.save();
+        response.redirect('/motocicletas');
+    } catch (error) {
+        console.log(error);
+        // Manejar el error según tu lógica de aplicación
+        response.redirect('/motocicletas/agregar-moto');
+    }
+};
+
 exports.get_moto = async (request, response) => {
     try {
         const [motocicletas, _] = await Motocicleta.fetchAll();
@@ -9,38 +27,21 @@ exports.get_moto = async (request, response) => {
         });
     } catch (error) {
         console.log(error);
+        // Manejar el error según tu lógica de aplicación
     }
 };
 
-exports.get_agregar_moto = (request, response) => {
-    response.render('agregarMoto', {
-        tituloPagina: 'Agregar Motocicleta'
-    });
-};
-
-exports.post_agregar_moto = async (request, response) => {
-    const nuevaMoto = new Motocicleta(request.body.nombre, request.body.imagen, request.body.username); 
+// Controlador para obtener una motocicleta por su ID
+exports.get_moto_por_id = async (request, response) => {
     try {
-        await nuevaMoto.save();
-        response.redirect('/motocicletas');
+        const [motocicleta, _] = await Motocicleta.findById(request.params.moto_id);
+        response.render('detalleMoto', {
+            moto: motocicleta,
+            tituloPagina: 'Detalle de la Motocicleta'
+        });
     } catch (error) {
-        if (error.code === 'ER_NO_REFERENCED_ROW_2') {
-            console.log('El usuario proporcionado no existe en la base de datos.');
-        } else {
-            console.log(error);
-        }
+        console.log(error);
+        // Manejar el error según tu lógica de aplicación
+        response.redirect('/motocicletas');
     }
-};
-
-
-
-exports.get_moto = (request, response) => {
-    Motocicleta.fetchAll()
-        .then(([motocicletas, _]) => {
-            response.render('motocicletas', {
-                motocicletas: motocicletas,
-                tituloPagina: 'Lista de Motocicletas'
-            });
-        })
-        .catch(err => console.log(err));
 };
