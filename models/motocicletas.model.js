@@ -1,25 +1,32 @@
-let siguienteId = 2; 
+const db = require('../util/database');
 
 module.exports = class Motocicleta {
     constructor(nombre, imagen) {
-        this.id = siguienteId++; 
         this.nombre = nombre;
         this.imagen = imagen;
     }
 
     save() {
-        motocicletas.push(this); 
+        return db.execute(
+            'INSERT INTO motocicletas (nombre, imagen) VALUES (?, ?)',
+            [this.nombre, this.imagen]
+        );
     }
 
     static fetchAll() {
-        return motocicletas; 
+        return db.execute('SELECT * FROM motocicletas');
+    }
+
+    static fetchOne(id) {
+        return db.execute('SELECT * FROM motocicletas WHERE id=?', 
+            [id]);
+    }
+
+    static fetch(id) {
+        if (id) {
+            return this.fetchOne(id);
+        } else {
+            return this.fetchAll();
+        }
     }
 };
-
-const motocicletas = [
-    {
-        id: 1,
-        nombre: "BMW 310 gs",
-        imagen: "https://s3-us-west-2.amazonaws.com/my-car-mexico/modelos/8ef44752/BMW-G310-GS-1.webp",
-    },
-];
