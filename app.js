@@ -4,7 +4,9 @@ const app = express();
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const csrf = require('csurf'); 
-const isAuth = require('./middleware/is-auth.js');
+const isAuth = require('./util/is-auth.js');
+
+const router = express.Router();
 
 router.get('/rutaProtegida', isAuth, controllerQueRequiereAutenticacion);
 
