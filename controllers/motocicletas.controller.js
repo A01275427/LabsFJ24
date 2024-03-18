@@ -19,7 +19,7 @@ exports.get_agregar_moto = (request, response) => {
 };
 
 exports.post_agregar_moto = async (request, response) => {
-    const nuevaMoto = new Motocicleta(request.body.nombre, request.body.imagen, request.body.username); // Asegúrate de pasar el username correcto aquí
+    const nuevaMoto = new Motocicleta(request.body.nombre, request.body.imagen, request.body.username); 
     try {
         await nuevaMoto.save();
         response.redirect('/motocicletas');
