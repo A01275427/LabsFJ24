@@ -11,8 +11,28 @@ exports.post_crear_usuario = (request, response) => {
     response.send('Usuario creado');
 };
 
-exports.login = (request, response) => {
-    response.render('login');
+exports.post_login = (request, response) => {
+    const { username, password } = request.body;
+
+    Usuario.fetchOne(username)
+        .then(([rows]) => {
+            if (rows.length === 0) {
+                return response.redirect('/usuarios/login');
+            }
+            const user = rows[0];
+            return bcrypt.compare(password, user.password)
+                .then(doMatch => {
+                    if (doMatch) {
+                        request.session.isLoggedIn = true;
+                        request.session.user = user;
+                        return request.session.save(err => {
+                            response.redirect('/motocicletas');
+                        });
+                    }
+                    response.redirect('/usuarios/login');
+                });
+        })
+        .catch(err => console.log(err));
 };
 
 exports.post_login = (request, response) => {

@@ -4,6 +4,10 @@ const app = express();
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const csrf = require('csurf'); 
+const isAuth = require('./middleware/is-auth.js');
+
+router.get('/rutaProtegida', isAuth, controllerQueRequiereAutenticacion);
+
 
 app.use(session({
     secret: 'secret-key',
