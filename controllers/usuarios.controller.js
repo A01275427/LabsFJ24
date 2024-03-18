@@ -7,14 +7,11 @@ exports.post_crear_usuario = (request, response) => {
 };
 
 exports.login = (request, response) => {
-    // Renderiza la vista de login
     response.render('login');
 };
 
 exports.post_login = (request, response) => {
     const { username, password } = request.body;
-    // Aquí deberías verificar las credenciales del usuario contra tu base de datos
-    // Simulamos una autenticación exitosa estableciendo una cookie
     response.cookie('loggedIn', 'true', { httpOnly: true, secure: true, maxAge: 3600000, sameSite: 'strict' });
     response.redirect('/usuarios/profile');
 };
