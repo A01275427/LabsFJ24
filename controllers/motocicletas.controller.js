@@ -1,11 +1,15 @@
-const Motocicleta = require('../models/motocicletas.model'); // Asegúrate de tener este modelo implementado correctamente
+const Motocicleta = require('../models/motocicletas.model');
 
-exports.get_moto = (request, response) => {
-    const motocicletas = Motocicleta.fetchAll();
-    response.render('motocicletas', {
-        motocicletas: motocicletas,
-        tituloPagina: 'Lista de Motocicletas'
-    });
+exports.get_moto = async (request, response) => {
+    try {
+        const [motocicletas, _] = await Motocicleta.fetchAll();
+        response.render('motocicletas', {
+            motocicletas: motocicletas,
+            tituloPagina: 'Lista de Motocicletas'
+        });
+    } catch (error) {
+        console.log(error);
+    }
 };
 
 exports.get_agregar_moto = (request, response) => {
@@ -14,8 +18,20 @@ exports.get_agregar_moto = (request, response) => {
     });
 };
 
-exports.post_agregar_moto = (request, response) => {
+exports.post_agregar_moto = async (request, response) => {
     const nuevaMoto = new Motocicleta(request.body.nombre, request.body.imagen);
-    nuevaMoto.save();
+    await nuevaMoto.save();
     response.redirect('/motocicletas');
+};
+
+
+exports.get_moto = (request, response) => {
+    Motocicleta.fetchAll()
+        .then(([motocicletas, _]) => {
+            response.render('motocicletas', {
+                motocicletas: motocicletas,
+                tituloPagina: 'Lista de Motocicletas'
+            });
+        })
+        .catch(err => console.log(err));
 };
