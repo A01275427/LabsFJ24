@@ -9,6 +9,10 @@ exports.post_crear_usuario = (request, response) => {
     response.send('Usuario creado');
 };
 
+exports.login = (request, response) => { // Función agregada
+    response.render('login');
+};
+
 exports.post_login = (request, response) => {
     const { username, password } = request.body;
 
