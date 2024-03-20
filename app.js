@@ -41,7 +41,7 @@ app.get('/', (req, res) => {
 app.use((err, req, res, next) => {
     if (err.code === 'EBADCSRFTOKEN') {
         res.status(403);
-        res.send('Session has expired or form tampered with.');
+        res.send('404');
     } else {
         next(err);
     }
