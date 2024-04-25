@@ -1,41 +1,36 @@
 const express = require('express');
 const session = require('express-session');
-const csrf = require('csurf');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-
+const bcrypt = require('bcryptjs');
+const csurf = require('csurf');
 const app = express();
+const csrfProtection = csurf();
 
-// Configurar la conexión a MongoDB (cambia la URL según tus necesidades)
-mongoose.connect('mongodb://localhost:27017/lab17_auth', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-});
-
-// Configurar middleware
-const csrfProtection = csrf();
-
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static('public'));
+// Configuración de sesiones
 app.use(session({
-    secret: 'clave-secreta', // Cambia esta clave secreta
+    secret: 'secreto', // Se recomienda utilizar una cadena secreta segura
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: false
 }));
 
-// Configurar CSRF
-app.use(csrfProtection);
+// Middleware para todas las peticiones
+app.use(express.urlencoded({ extended: true })); // Para procesar datos de formularios
+app.use(csrfProtection); // Protección CSRF
+
+// Middleware global para el token CSRF
 app.use((req, res, next) => {
     res.locals.csrfToken = req.csrfToken();
     next();
 });
 
-// Configurar rutas
-const authRoutes = require('./routes/usuarios.routes');
-app.use(authRoutes);
+// Configurar el motor de plantillas EJS
+app.set('view engine', 'ejs');
 
-// Configurar el puerto
+// Rutas
+const authRoutes = require('./routes/auth.routes');
+app.use('/', authRoutes);
+
+// Iniciar servidor
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Servidor escuchando en el puerto ${PORT}`);
+    console.log(`Servidor iniciado en el puerto ${PORT}`);
 });

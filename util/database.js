@@ -1,10 +1,13 @@
 const mysql = require('mysql2');
 
 const pool = mysql.createPool({
-    host: 'mysql-arturosanchezrodriguez.alwaysdata.net',
-    user: '325456',
-    database: 'arturosanchezrodriguez_motos',
-    password: 'Dyna=202702'
+    host: 'localhost',
+    user: 'root',
+    database: 'motos',
+    password: '',
+    port: 3306,
 });
+
+
 
 module.exports = pool.promise();
