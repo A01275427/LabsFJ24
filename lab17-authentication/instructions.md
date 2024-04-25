@@ -1,0 +1,3 @@
+
+Revisa junto con el profesor la presentación sobre Autentificación
+Crea la funcionalidad para registrar nuevos usuarios. Recuerda validar que el usuario no exista. Es importante que cuando se guarda un password, lo encriptemos con un método no desencriptable, para que si alguien tiene acceso a la base de datos, no pueda descifrar el password. Un paquete que nos puede servir para ello es bcryptjs, por lo que hay que instalarlon por si, por lo que har
