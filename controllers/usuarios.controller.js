@@ -1,83 +1,57 @@
-const Usuario = require('../models/usuario.model');
 const bcrypt = require('bcryptjs');
+const User = require('../models/usuario.model');
 
-exports.get_usuarios = (request, response) => {
-    response.send('Lista de usuarios');
-};
-
-exports.post_crear_usuario = (request, response) => {
-    response.send('Usuario creado');
-};
-
-exports.login = (request, response) => { // Función agregada
-    response.render('login');
-};
-
-exports.post_login = (request, response) => {
-    const { username, password } = request.body;
-
-    Usuario.fetchOne(username)
-        .then(([rows]) => {
-            if (rows.length === 0) {
-                return response.redirect('/usuarios/login');
-            }
-            const user = rows[0];
-            return bcrypt.compare(password, user.password)
-                .then(doMatch => {
-                    if (doMatch) {
-                        request.session.isLoggedIn = true;
-                        request.session.user = user;
-                        return request.session.save(err => {
-                            response.redirect('/motocicletas');
-                        });
-                    }
-                    response.redirect('/usuarios/login');
-                });
-        })
-        .catch(err => console.log(err));
-};
-
-exports.profile = (request, response) => {
-    const isLoggedIn = request.cookies['loggedIn'] === 'true';
-    if (isLoggedIn) {
-        response.send('Perfil del Usuario');
-    } else {
-        response.redirect('/usuarios/login');
-    }
-};
-
-exports.logout = (request, response) => {
-    request.session.destroy(err => {
-        if (err) {
-            console.log(err);
-            return next(err);
-        }
-        response.cookie('loggedIn', '', { httpOnly: true, secure: true, maxAge: 0, sameSite: 'strict' });
-        response.redirect('/usuarios/login');
+exports.getSignup = (req, res) => {
+    res.render('signup', {
+        csrfToken: req.csrfToken(),
     });
 };
 
-exports.get_signup = (request, response) => {
-    response.render('signup');
+exports.postSignup = async (req, res) => {
+    const { email, password } = req.body;
+
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+        return res.redirect('/signup'); // El usuario ya existe
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 12);
+
+    const newUser = new User({
+        email,
+        password: hashedPassword,
+    });
+
+    await newUser.save();
+    res.redirect('/login');
 };
 
-exports.post_signup = (request, response) => {
-    const { username, password } = request.body;
-    Usuario.fetchOne(username)
-        .then(([rows]) => {
-            if (rows.length > 0) {
-                return response.redirect('/usuarios/signup'); // El usuario ya existe
+exports.getLogin = (req, res) => {
+    res.render('login', {
+        csrfToken: req.csrfToken(),
+    });
+};
+
+exports.postLogin = async (req, res) => {
+    const { email, password } = req.body;
+
+    const user = await User.findOne({ email });
+    if (!user) {
+        return res.redirect('/login'); // Usuario no encontrado
+    }
+
+    const doMatch = await bcrypt.compare(password, user.password);
+    if (doMatch) {
+        req.session.isLoggedIn = true;
+        req.session.user = user;
+
+        return req.session.save((err) => {
+            if (err) {
+                console.error(err);
             }
-            return bcrypt.hash(password, 12);
-        })
-        .then(hashedPassword => {
-            const newUser = new Usuario(username, hashedPassword);
-            return newUser.save();
-        })
-        .then(() => {
-            response.redirect('/usuarios/login');
-        })
-        .catch(err => console.log(err));
+            res.redirect('/');
+        });
+    }
+
+    res.redirect('/login'); // Contraseña incorrecta
 };
-
-

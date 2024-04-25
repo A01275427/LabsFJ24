@@ -1,55 +1,41 @@
 const express = require('express');
-const path = require('path');
-const app = express();
-const cookieParser = require('cookie-parser');
 const session = require('express-session');
-const csrf = require('csurf'); 
-const isAuth = require('./util/is-auth.js');
+const csrf = require('csurf');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
+const app = express();
+
+// Configurar la conexión a MongoDB (cambia la URL según tus necesidades)
+mongoose.connect('mongodb://localhost:27017/lab17_auth', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
+
+// Configurar middleware
+const csrfProtection = csrf();
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static('public'));
 app.use(session({
-    secret: 'secret-key',
+    secret: 'clave-secreta', // Cambia esta clave secreta
     resave: false,
     saveUninitialized: false,
 }));
 
-const csrfProtection = csrf();
-app.use(csrfProtection); 
-
-app.use(cookieParser());
-
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
-
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
-
+// Configurar CSRF
+app.use(csrfProtection);
 app.use((req, res, next) => {
     res.locals.csrfToken = req.csrfToken();
     next();
 });
 
-const motocicletasRoutes = require('./routes/motocicletas.routes');
-const usuariosRoutes = require('./routes/usuarios.routes');
+// Configurar rutas
+const authRoutes = require('./routes/usuarios.routes');
+app.use(authRoutes);
 
-app.use('/motocicletas', motocicletasRoutes);
-app.use('/usuarios', usuariosRoutes);
-
-app.get('/', (req, res) => {
-    res.redirect('/motocicletas');
-});
-
-app.use((err, req, res, next) => {
-    if (err.code === 'EBADCSRFTOKEN') {
-        res.status(403);
-        res.send('404');
-    } else {
-        next(err);
-    }
-});
-
-app.use((req, res) => {
-    res.status(404).render('includes/404', { tituloPagina: 'Página no encontrada' });
-});
-
+// Configurar el puerto
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Servidor corriendo en http://localhost:${PORT}`));
+app.listen(PORT, () => {
+    console.log(`Servidor escuchando en el puerto ${PORT}`);
+});

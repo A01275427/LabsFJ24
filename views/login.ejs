@@ -1,17 +1,14 @@
 <%- include('includes/head') %>
 
-<form action="/usuarios/login" method="post">
-    <div class="form-group">
-        <label for="username">Usuario:</label>
-        <input type="text" id="username" name="username" required>
-    </div>
-    <div class="form-group">
-        <label for="password">Contraseña:</label>
-        <input type="password" id="password" name="password" required>
-    </div>
-    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+<form action="/login" method="POST">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="email" required />
     
-    <button type="submit">Iniciar Sesión</button>
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password" required />
+
+    <button type="submit">Login</button>
 </form>
 
 <%- include('includes/foot') %>

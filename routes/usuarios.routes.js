@@ -1,12 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const usuariosController = require('../controllers/usuarios.controller');
 
-router.get('/login', usuariosController.login);
-router.post('/login', usuariosController.post_login);
-router.get('/logout', usuariosController.logout);
-router.get('/signup', usuariosController.get_signup);
-router.post('/signup', usuariosController.post_signup);
-router.get('/profile', usuariosController.profile);
+const authController = require('../controllers/usuarios.controller');
+const isAuth = require('../util/is-auth');
+
+router.get('/signup', authController.getSignup);
+router.post('/signup', authController.postSignup);
+
+router.get('/login', authController.getLogin);
+router.post('/login', authController.postLogin);
+
+router.get('/protected', isAuth, (req, res) => {
+    res.send('Ruta protegida');
+});
 
 module.exports = router;
