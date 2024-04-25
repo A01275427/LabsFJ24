@@ -1,12 +1,19 @@
 const express = require('express');
 const router = express.Router();
-const usuariosController = require('../controllers/usuarios.controller');
+const controller = require('./controller');
 
-router.get('/login', usuariosController.login);
-router.post('/login', usuariosController.post_login);
-router.get('/logout', usuariosController.logout);
-router.get('/signup', usuariosController.get_signup);
-router.post('/signup', usuariosController.post_signup);
-router.get('/profile', usuariosController.profile);
+router.get('/signup', controller.signup);
+router.post('/signup', controller.postSignup);
+router.get('/login', controller.login);
+router.post('/login', controller.postLogin);
+router.get('/protected', isAuth, controller.protectedRoute);
+
+// Middleware para proteger rutas
+function isAuth(req, res, next) {
+    if (!req.session.isLoggedIn) {
+        return res.redirect('/login');
+    }
+    next();
+}
 
 module.exports = router;

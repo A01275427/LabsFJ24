@@ -1,55 +1,34 @@
 const express = require('express');
-const path = require('path');
-const app = express();
-const cookieParser = require('cookie-parser');
 const session = require('express-session');
-const csrf = require('csurf'); 
-const isAuth = require('./util/is-auth.js');
+const bodyParser = require('body-parser');
+const csrf = require('csurf');
+const routes = require('./routes');
 
+const app = express();
+
+// Configuración del middleware
 app.use(session({
-    secret: 'secret-key',
+    secret: 'miSecreto',
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: false
 }));
+app.use(bodyParser.urlencoded({ extended: false }));
 
+// Configuración de csrfProtection
 const csrfProtection = csrf();
-app.use(csrfProtection); 
+app.use(csrfProtection);
 
-app.use(cookieParser());
-
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
-
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
-
+// Middleware para establecer el token CSRF en las vistas
 app.use((req, res, next) => {
     res.locals.csrfToken = req.csrfToken();
     next();
 });
 
-const motocicletasRoutes = require('./routes/motocicletas.routes');
-const usuariosRoutes = require('./routes/usuarios.routes');
+// Configuración de las rutas
+app.use('/', routes);
 
-app.use('/motocicletas', motocicletasRoutes);
-app.use('/usuarios', usuariosRoutes);
-
-app.get('/', (req, res) => {
-    res.redirect('/motocicletas');
-});
-
-app.use((err, req, res, next) => {
-    if (err.code === 'EBADCSRFTOKEN') {
-        res.status(403);
-        res.send('404');
-    } else {
-        next(err);
-    }
-});
-
-app.use((req, res) => {
-    res.status(404).render('includes/404', { tituloPagina: 'Página no encontrada' });
-});
-
+// Iniciar el servidor
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Servidor corriendo en http://localhost:${PORT}`));
+app.listen(PORT, () => {
+    console.log(`Servidor iniciado en el puerto ${PORT}`);
+});
