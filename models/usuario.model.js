@@ -1,14 +1,15 @@
-const bcrypt = require('bcryptjs');
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-class User {
-    constructor(username, password) {
-        this.username = username;
-        this.password = password;
+const userSchema = new Schema({
+    email: {
+        type: String,
+        required: true
+    },
+    password: {
+        type: String,
+        required: true
     }
+});
 
-    async hashPassword() {
-        this.password = await bcrypt.hash(this.password, 12);
-    }
-}
-
-module.exports = User;
+module.exports = mongoose.model('User', userSchema);
