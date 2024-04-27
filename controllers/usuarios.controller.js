@@ -16,7 +16,6 @@ exports.post_login = (request, response, next) => {
     Usuario.fetchOne(request.body.username)
         .then(([users, fieldData]) => {
             if(users.length == 1) {
-                //users[0] contiene el objeto de la respuesta de la consulta
                 const user = users[0];
                 bcrypt.compare(request.body.password, user.password)
                     .then(doMatch => {
@@ -58,22 +57,15 @@ exports.get_signup = (request, response, next) => {
     });
 };
 
-exports.post_signup = (req, res, next) => {
-    console.log('Controller: Entering post_signup'); 
-    const username = req.body.username;
-    const password = req.body.password;
-    console.log(`Received username: ${username}`); 
-    
-    const nuevo_usuario = new Usuario(username, password);
+exports.post_signup = (request, response, next) => {
+    const nuevo_usuario = new Usuario(request.body.username, request.body.password);
     nuevo_usuario.save()
-      .then(() => {
-        console.log('User saved successfully'); 
-        res.redirect('/users/login');
-      })
-      .catch((error) => {
-        console.error('Error saving user:', error); 
-        req.session.error = 'Invalid username.';
-        res.redirect('/users/signup');
-      });
-  };
-  
+        .then(([rows, fieldData])=>{
+            response.redirect('/users/login');
+        })
+        .catch((error) => {
+            console.log(error);
+            request.session.error = 'Nombre de usuario inválido.';
+            response.redirect('/users/signup');
+        });
+};
