@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Inicio</title>
-    <link rel="stylesheet" href="/css/style.css"> <!-- Ruta a un archivo CSS -->
+    <link rel="stylesheet" href="/css/style.css"> 
 </head>
 <body>
-    <!-- Menú de navegación -->
     <nav>
         <ul>
             <li><a href="/">Inicio</a></li>
@@ -22,7 +21,6 @@
         </ul>
     </nav>
 
-    <!-- Mensaje de bienvenida -->
     <section>
         <% if (typeof isLoggedIn !== 'undefined' && isLoggedIn) { %>
             <h1>Bienvenido, <%= username %>!</h1>
@@ -33,13 +31,11 @@
         <% } %>
     </section>
 
-    <!-- Sección de contenido principal -->
     <section>
         <h2>Contenido destacado</h2>
         <p>Este es un ejemplo de una aplicación web con autenticación y rutas protegidas. Puedes ver contenido adicional después de iniciar sesión.</p>
     </section>
 
-    <!-- Pie de página -->
     <footer>
         <p>© 2024 Tu Aplicación. Todos los derechos reservados.</p>
     </footer>

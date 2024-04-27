@@ -6,11 +6,12 @@
 </head>
 <body>
     <h1>Registro</h1>
-    <form action="/register" method="POST">
-        <input type="hidden" name="_csrf" value="<%= csrfToken %>"> <!-- Campo oculto para el token CSRF -->
+    <form action="/users/signup" method="POST">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>"> 
         <input type="text" name="username" placeholder="Usuario" required>
         <input type="password" name="password" placeholder="Contraseña" required>
         <button type="submit">Registrar</button>
-    </form>
+      </form>
+      
 </body>
 </html>

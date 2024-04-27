@@ -1,50 +1,43 @@
 const express = require('express');
-const session = require('express-session');
-const csrf = require('csurf');
-
-const authRoutes = require('./routes/auth');
-const isAuth = require('./util/is-auth');
-
 const app = express();
 
-// Configurar sesiones con una clave secreta fuerte
+app.set('view engine', 'ejs');
+app.set('views', 'views');
+
+const session = require('express-session');
+
 app.use(session({
-    secret: 'your-secret-key', // Cambiar a una clave secreta segura
-    resave: false,             // No reescribir la sesión si no es necesario
-    saveUninitialized: false   // No guardar sesiones no inicializadas
+  secret: 'mi string secreto que debe ser un string aleatorio muy largo, no como éste', 
+  resave: false, 
+  saveUninitialized: false, 
 }));
 
-// Configurar protección CSRF
-const csrfProtection = csrf(); // Configurar el middleware CSRF
-app.use(csrfProtection);       // Aplicar el middleware de CSRF
+const path = require('path');
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Middleware para pasar el token CSRF a las vistas
-app.use((req, res, next) => {
-    res.locals.csrfToken = req.csrfToken(); // Pasar el token CSRF a las vistas
-    next();  // Continuar con el siguiente middleware
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.urlencoded({extended: false}));
+
+const csrf = require('csurf');
+const csrfProtection = csrf();
+app.use(csrfProtection); 
+
+app.use((request, response, next) => {
+  console.log('Middleware!');
+  next(); 
 });
 
-// Configurar middleware para analizar datos del cuerpo de las solicitudes
-app.use(express.urlencoded({ extended: true }));
+const rutasUsuarios = require('./routes/usuarios.routes');
+app.use('/users', rutasUsuarios);
 
-// Configurar motor de vistas
-app.set('view engine', 'ejs'); // Motor de vistas EJS
-app.set('views', 'views');     // Directorio de vistas
-
-// Ruta para página de inicio
-app.get('/', (req, res) => {
-    res.send('Bienvenido a la aplicación'); // Mensaje de bienvenida
+app.use((request, response, next) => {
+  response.status(404);
+  response.sendFile(
+    path.join(__dirname, 'views', '404.html')
+  );
 });
 
-// Proteger una ruta con middleware de autenticación
-app.get('/protegido', isAuth, (req, res) => {
-    res.send('Esta es una ruta protegida'); // Ruta protegida por autenticación
-});
-
-// Rutas para autenticación
-app.use('/auth', authRoutes); // Rutas para registro y autenticación
-
-// Iniciar el servidor en el puerto 3000
 app.listen(3000, () => {
-    console.log('Servidor ejecutándose en el puerto 3000'); // Mensaje de confirmación
-});
+    console.log('El servidor está corriendo en el puerto 3000');
+  });
