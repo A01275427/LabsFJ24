@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio</title>
+    <link rel="stylesheet" href="/css/style.css"> <!-- Ruta a un archivo CSS -->
+</head>
+<body>
+    <!-- Menú de navegación -->
+    <nav>
+        <ul>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/about">Acerca de</a></li>
+            <li><a href="/contact">Contacto</a></li>
+            <% if (typeof isLoggedIn !== 'undefined' && isLoggedIn) { %>
+                <li><a href="/dashboard">Tablero</a></li>
+                <li><a href="/logout">Cerrar sesión</a></li>
+            <% } else { %>
+                <li><a href="/register">Registrarse</a></li>
+                <li><a href="/login">Iniciar sesión</a></li>
+            <% } %>
+        </ul>
+    </nav>
+
+    <!-- Mensaje de bienvenida -->
+    <section>
+        <% if (typeof isLoggedIn !== 'undefined' && isLoggedIn) { %>
+            <h1>Bienvenido, <%= username %>!</h1>
+            <p>Accede a tus recursos en el <a href="/dashboard">tablero de usuario</a>.</p>
+        <% } else { %>
+            <h1>Bienvenido a nuestra aplicación</h1>
+            <p>Por favor, <a href="/register">regístrate</a> o <a href="/login">inicia sesión</a> para continuar.</p>
+        <% } %>
+    </section>
+
+    <!-- Sección de contenido principal -->
+    <section>
+        <h2>Contenido destacado</h2>
+        <p>Este es un ejemplo de una aplicación web con autenticación y rutas protegidas. Puedes ver contenido adicional después de iniciar sesión.</p>
+    </section>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>© 2024 Tu Aplicación. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
