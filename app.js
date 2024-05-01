@@ -34,7 +34,6 @@ const rutasUsuarios = require('./routes/usuarios.routes');
 app.use('/users', rutasUsuarios);
 
 
-
 app.use((request, response, next) => {
   response.status(404);
   response.sendFile(
